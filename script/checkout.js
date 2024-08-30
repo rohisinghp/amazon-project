@@ -5,13 +5,13 @@ import { products } from "../data/products.js";
 let htmldetail='';
 cart.forEach((product)=>{
     let cartitem=product.productId;
-    let productkaitem;
+    let item;
     let matchitem;
     let quantity=product.quantity;
 
-    products.forEach((productkaitem)=>{
-        if(productkaitem.id === cartitem){
-             matchitem = productkaitem;
+    products.forEach((item)=>{
+        if(item.id === cartitem){
+             matchitem = item;
              
         }
     })
@@ -103,7 +103,7 @@ document.querySelectorAll('.js-delete')
     link.addEventListener('click',()=>{
          
            const productId=link.dataset.productId;
-           
+           console.log(productId)
            removefromcart(productId);
 
       const container = document.querySelector(`.js-cart-item-container-${productId}`)

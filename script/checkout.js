@@ -96,7 +96,16 @@ cart.forEach((product)=>{
 
 })
 
+let totalno_ofitems=0;
+cart.forEach((item)=>{
+  totalno_ofitems+=item.quantity;
+})
+
 document.querySelector('.order-summary').innerHTML=htmldetail;
+document.querySelector('.checkout-header-middle-section').innerHTML=
+`Checkout (<a class="return-to-home-link"
+            href="amazon.html">${totalno_ofitems} items</a>)`
+            ;
 
 document.querySelectorAll('.js-delete')
 .forEach((link)=>{
@@ -105,6 +114,7 @@ document.querySelectorAll('.js-delete')
            const productId=link.dataset.productId;
            console.log(productId)
            removefromcart(productId);
+          
 
       const container = document.querySelector(`.js-cart-item-container-${productId}`)
           

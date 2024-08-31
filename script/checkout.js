@@ -1,20 +1,26 @@
 import { cart,removefromcart} from "../data/cart.js";
 import { products } from "../data/products.js";
 
-
+console.log(dayjs());
+let total_cost=0;
 let htmldetail='';
 cart.forEach((product)=>{
     let cartitem=product.productId;
     let item;
     let matchitem;
     let quantity=product.quantity;
+    
 
     products.forEach((item)=>{
         if(item.id === cartitem){
              matchitem = item;
+
+             total_cost+=matchitem.priceCents*product.quantity/100; //for order summary
              
         }
     })
+
+    
     
  htmldetail+=
    `<div class="cart-item-container js-cart-item-container-${matchitem.id}">
@@ -122,7 +128,47 @@ document.querySelectorAll('.js-delete')
      });
     
  });
+
  
+
+ 
+ document.querySelector('.payment-summary').innerHTML=
+ ` <div class="payment-summary-title">
+            Order Summary
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Items (${totalno_ofitems}):</div>
+            <div class="payment-summary-money">$${(total_cost.toFixed(2))}</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Shipping &amp; handling:</div>
+            <div class="payment-summary-money">$4.99</div>
+          </div>
+
+          <div class="payment-summary-row subtotal-row">
+            <div>Total before tax:</div>
+            <div class="payment-summary-money">$${(Math.round(total_cost)+4.99).toFixed(2)}</div>
+          </div>
+
+          <div class="payment-summary-row">
+            <div>Estimated tax (10%):</div>
+            <div class="payment-summary-money">$${(Math.round(total_cost*10/100)).toFixed(2)}</div>
+          </div>
+
+          <div class="payment-summary-row total-row">
+            <div>Order total:</div>
+            <div class="payment-summary-money">$${(Math.round(total_cost+4.99)+(Math.round(total_cost*10/100))).toFixed(2)}</div>
+          </div>
+
+          <button class="place-order-button button-primary">
+            Place your order
+          </button>
+        </div>
+      </div> 
+ `
+ ;
 
 
 

@@ -101,6 +101,7 @@ document.querySelectorAll('.button-primary')
     button.addEventListener('click', ()=>{
        const productId = button.dataset.productId;
        addtocart(productId);
+ 
     
     let total =0;
 

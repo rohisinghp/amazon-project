@@ -5,10 +5,7 @@ if(!cart){
   
   [
 
-]
-}
-
-
+]}
 
 function savetostorage(){
     localStorage.setItem('cart',JSON.stringify(cart));
